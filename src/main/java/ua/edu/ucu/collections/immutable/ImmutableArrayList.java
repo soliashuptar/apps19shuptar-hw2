@@ -4,17 +4,11 @@ import java.util.Arrays;
 
 public class ImmutableArrayList implements ImmutableList {
 
-    private Object[] ImmArr;
+    private Object[] ImmutableArr;
     private int size;
 
-    public void isValid(int index) throws IndexOutOfBoundsException {
-        if (size == 0 || index >= size) {
-            throw new IndexOutOfBoundsException();
-        }
-    }
-
-    public ImmutableArrayList(){
-        ImmArr = new Object[1];
+    public ImmutableArrayList() {
+        ImmutableArr = new Object[1];
         size = 0;
     }
 
@@ -22,7 +16,7 @@ public class ImmutableArrayList implements ImmutableList {
         if (arr.length == 0) {
             throw new IllegalArgumentException();
         }
-        ImmArr = Arrays.copyOf(arr, arr.length);
+        ImmutableArr = Arrays.copyOf(arr, arr.length);
         size = arr.length;
 
     }
@@ -30,7 +24,7 @@ public class ImmutableArrayList implements ImmutableList {
     @Override
     public ImmutableList add(Object e) {
         size += 1;
-        Object[] newArr = Arrays.copyOf(ImmArr, size);
+        Object[] newArr = Arrays.copyOf(ImmutableArr, size);
         newArr[size - 1] = e;
 //        ImmutableArrayList[]
         return new ImmutableArrayList(newArr);
@@ -43,10 +37,10 @@ public class ImmutableArrayList implements ImmutableList {
         Object[] arr = new Object[size];
         int ind = 0;
         for (int i = 0; i < size; i++) {
-            if ( i == index) {
+            if (i == index) {
                 arr[i] = null;
             } else {
-                arr[i] = ImmArr[ind];
+                arr[i] = ImmutableArr[ind];
                 ind += 1;
             }
         }
@@ -59,8 +53,9 @@ public class ImmutableArrayList implements ImmutableList {
         if (size == 0 && c.length == 0) {
             return new ImmutableArrayList();
         }
-        Object[] newArr = Arrays.copyOf(ImmArr, size + c.length);
+        Object[] newArr = Arrays.copyOf(ImmutableArr, size + c.length);
         int ind = 0;
+
         for (int i = size; i < newArr.length; i ++) {
             newArr[i] = c[ind];
             ind += 1;
@@ -79,7 +74,7 @@ public class ImmutableArrayList implements ImmutableList {
                 System.arraycopy(c, 0, arr, i, c.length);
                 i += c.length - 1;
             } else {
-                arr[i] = ImmArr[indOfSourceArr];
+                arr[i] = ImmutableArr[indOfSourceArr];
                 indOfSourceArr += 1;
             }
         }
@@ -94,7 +89,7 @@ public class ImmutableArrayList implements ImmutableList {
 //        }
 
 
-        return ImmArr[index];
+        return ImmutableArr[index];
     }
 
     @Override
@@ -103,15 +98,14 @@ public class ImmutableArrayList implements ImmutableList {
 
         Object[] newArr = new Object[size - 1];
         int ind = 0;
+
         for (int i = 0; i < size; i ++) {
             if (i != index) {
-                newArr[ind] = ImmArr[i];
+                newArr[ind] = ImmutableArr[i];
                 ind += 1;
             }
         }
-//        System.out.println("ImmArr" + Integer.toString(index) + Integer.toString(index));
-//        System.arraycopy(ImmArr, 0, newArr, 0, index);
-//        System.arraycopy(ImmArr, index + 1, newArr, index + 1, size - index + 1);
+
         return new ImmutableArrayList(newArr);
     }
 
@@ -119,15 +113,16 @@ public class ImmutableArrayList implements ImmutableList {
     public ImmutableList set(int index, Object e) {
         isValid(index);
 
-        Object[] newArr = Arrays.copyOf(ImmArr, size);
+        Object[] newArr = Arrays.copyOf(ImmutableArr, size);
         newArr[index] = e;
         return new ImmutableArrayList(newArr);
     }
 
     @Override
     public int indexOf(Object e) {
+
         for (int i = 0; i < size; i ++) {
-            if (ImmArr[i] == e) {
+            if (ImmutableArr[i] == e) {
                 return i;
             }
         }
@@ -157,13 +152,13 @@ public class ImmutableArrayList implements ImmutableList {
 
     @Override
     public Object[] toArray() {
-        Object[] newArr = Arrays.copyOf(ImmArr, size);
+        Object[] newArr = Arrays.copyOf(ImmutableArr, size);
         return newArr;
     }
 
     @Override
     public String toString() {
-        Object[] newArr = Arrays.copyOf(ImmArr, size);
+        Object[] newArr = Arrays.copyOf(ImmutableArr, size);
         if (size == 0) {
             return "";
         }
@@ -173,5 +168,11 @@ public class ImmutableArrayList implements ImmutableList {
         }
         s.append(newArr[size - 1].toString());
         return s.toString();
+    }
+
+    public void isValid(int index) throws IndexOutOfBoundsException {
+        if (size == 0 || index >= size) {
+            throw new IndexOutOfBoundsException();
+        }
     }
 }

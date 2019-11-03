@@ -6,8 +6,8 @@ public class ImmutableLinkedList implements ImmutableList {
 
     static class Node {
 
-        Object data;
-        Node next;
+        private Object data;
+        private Node next;
 
         Node(Object value) {
             data = value;
@@ -28,7 +28,7 @@ public class ImmutableLinkedList implements ImmutableList {
     }
 
 
-    public ImmutableList add(Object e){
+    public ImmutableList add(Object e) {
         Node start = head;
         if (start.data == null) {
             start = new Node(e);
@@ -88,6 +88,7 @@ public class ImmutableLinkedList implements ImmutableList {
         while (temp.next != null) {
             temp = temp.next;
         }
+
         for (int i = ind; i < c.length; i ++) {
             temp.next = new Node(c[i]);
             temp = temp.next;
@@ -109,6 +110,7 @@ public class ImmutableLinkedList implements ImmutableList {
         while (temp.next != null) {
             if (ind == index - 1) {
                 Node el = temp.next;
+
                 for (int i = 0; i < c.length; i ++) {
                     temp.next = new Node(c[i]);
                     temp = temp.next;
@@ -159,6 +161,7 @@ public class ImmutableLinkedList implements ImmutableList {
         Node start = head;
         Node temp = start;
         if (index == size() - 1) {
+
             for (int i = 1; i < size(); i ++) {
                 if (ind == index - 1) {
                     temp.next = temp.next.next;
@@ -203,7 +206,6 @@ public class ImmutableLinkedList implements ImmutableList {
             if (ind == index - 1) {
                 Node el = temp.next.next;
                 temp.next = new Node(e);
-
                 temp = temp.next;
                 temp.next = el;
             } else{
@@ -266,8 +268,8 @@ public class ImmutableLinkedList implements ImmutableList {
             current = current.next;
             newArr[ind] = current.data;
             ind += 1;
-
         }
+
         for (int i = 0; i < newArr.length; i ++) {
             System.out.println(newArr[i]);
         }
@@ -309,7 +311,7 @@ public class ImmutableLinkedList implements ImmutableList {
     }
 
     public ImmutableLinkedList removeLast() {
-        return (ImmutableLinkedList) remove((size() - 1));
+        return (ImmutableLinkedList) remove(size() - 1);
     }
 
 
