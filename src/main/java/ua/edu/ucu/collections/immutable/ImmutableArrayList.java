@@ -160,4 +160,18 @@ public class ImmutableArrayList implements ImmutableList {
         Object[] newArr = Arrays.copyOf(ImmArr, size);
         return newArr;
     }
+
+    @Override
+    public String toString() {
+        Object[] newArr = Arrays.copyOf(ImmArr, size);
+        if (size == 0) {
+            return "";
+        }
+        StringBuilder s = new StringBuilder();
+        for (int i = 0; i < size - 1; i++) {
+            s.append(newArr[i].toString()).append(", ");
+        }
+        s.append(newArr[size - 1].toString());
+        return s.toString();
+    }
 }

@@ -306,6 +306,14 @@ public class ImmutableArrayListTest {
         assertEquals(expValue, realValue);
     }
 
+    @Test
+    public void testToString() {
+        Object[] arr = {1, 2, 7};
+        ImmutableList immArr = new ImmutableArrayList(arr);
+        String expValue = "1, 2, 7";
+        assertEquals(expValue, immArr.toString());
+    }
+
 
 
 
