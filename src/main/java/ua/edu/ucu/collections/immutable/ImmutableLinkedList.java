@@ -278,7 +278,17 @@ public class ImmutableLinkedList implements ImmutableList {
 
     @Override
     public String toString() {
-        return null;
+        toArray();
+        StringBuilder s = new StringBuilder();
+        Node temp = head;
+        while (temp.next != null) {
+            s.append(temp.data);
+            s.append(", ");
+            temp = temp.next;
+        }
+        s.append(getLast());
+        return s.toString();
+
     }
 
     public ImmutableLinkedList addFirst(Object e) {

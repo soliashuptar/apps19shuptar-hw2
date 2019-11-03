@@ -370,6 +370,20 @@ public class ImmutableLinkedListTest {
 
     }
 
+    @Test
+    public void testToString() {
+        ImmutableLinkedList Arr = new ImmutableLinkedList();
+        ImmutableLinkedList Arr1 = Arr.addFirst(5);
+        ImmutableLinkedList Arr2 = Arr1.addLast(25);
+        ImmutableLinkedList Arr3 = Arr2.addFirst(73);
+        String expValue =  "73, 5, 25";
+        assertEquals(expValue, Arr3.toString());
+
+
+    }
+
+
+
 
 
 
