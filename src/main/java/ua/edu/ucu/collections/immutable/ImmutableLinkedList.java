@@ -89,7 +89,7 @@ public class ImmutableLinkedList implements ImmutableList {
             temp = temp.next;
         }
 
-        for (int i = ind; i < c.length; i ++) {
+        for (int i = ind; i < c.length; i++) {
             temp.next = new Node(c[i]);
             temp = temp.next;
         }
@@ -111,7 +111,7 @@ public class ImmutableLinkedList implements ImmutableList {
             if (ind == index - 1) {
                 Node el = temp.next;
 
-                for (int i = 0; i < c.length; i ++) {
+                for (int i = 0; i < c.length; i++) {
                     temp.next = new Node(c[i]);
                     temp = temp.next;
                 }
@@ -162,7 +162,7 @@ public class ImmutableLinkedList implements ImmutableList {
         Node temp = start;
         if (index == size() - 1) {
 
-            for (int i = 1; i < size(); i ++) {
+            for (int i = 1; i < size(); i++) {
                 if (ind == index - 1) {
                     temp.next = temp.next.next;
 
@@ -208,7 +208,7 @@ public class ImmutableLinkedList implements ImmutableList {
                 temp.next = new Node(e);
                 temp = temp.next;
                 temp.next = el;
-            } else{
+            } else {
                 temp = temp.next;
             }
             ind += 1;
@@ -270,10 +270,15 @@ public class ImmutableLinkedList implements ImmutableList {
             ind += 1;
         }
 
-        for (int i = 0; i < newArr.length; i ++) {
+        for (int i = 0; i < newArr.length; i++) {
             System.out.println(newArr[i]);
         }
         return newArr;
+    }
+
+    @Override
+    public String toString() {
+        return null;
     }
 
     public ImmutableLinkedList addFirst(Object e) {

@@ -4,24 +4,24 @@ import ua.edu.ucu.collections.immutable.ImmutableLinkedList;
 
 public class Queue {
 
-    private ImmutableLinkedList QueueLst;
+    private ImmutableLinkedList queueLst;
 
     public Queue() {
-        QueueLst = new ImmutableLinkedList();
+        queueLst = new ImmutableLinkedList();
     }
 
     public Object peek() {
-        return QueueLst.getLast();
+        return queueLst.getLast();
     }
 
     public Object dequeue() {
         Object res = peek();
-        QueueLst = QueueLst.removeLast();
+        queueLst = queueLst.removeLast();
         return res;
     }
 
     public void enqueue(Object e) {
-        QueueLst = QueueLst.addFirst(e);
+        queueLst = queueLst.addFirst(e);
     }
 
     
