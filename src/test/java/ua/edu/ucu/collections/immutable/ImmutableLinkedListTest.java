@@ -23,9 +23,6 @@ public class ImmutableLinkedListTest {
         ImmutableList newArr = LinkedLst.add(8);
         ImmutableList lastArr = newArr.add(19);
         Object[] expArray = new Object[] {8, 19};
-//        Object [] arr = LinkedLst.toArray();
-//        System.out.println(arr);
-        //expect
         assertArrayEquals(expArray, lastArr.toArray());
 
     }

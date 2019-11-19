@@ -1,6 +1,6 @@
 package ua.edu.ucu.collections.immutable;
 
-public class ImmutableLinkedList implements ImmutableList {
+public final class ImmutableLinkedList implements ImmutableList {
 
     private Node head;
 
@@ -49,7 +49,7 @@ public class ImmutableLinkedList implements ImmutableList {
 
     public ImmutableLinkedList add(Object e) {
         Node start = head;
-        if (start.data == null) {
+        if (checkHead()) {
             start = new Node(e);
             return new ImmutableLinkedList(start);
         }
@@ -64,8 +64,8 @@ public class ImmutableLinkedList implements ImmutableList {
 
     @Override
     public ImmutableLinkedList add(int index, Object e) {
-        if (head.data == null || index >= size()) {
-            throw new IndexOutOfBoundsException();
+        if (checkHead() || checkIndex(index)) {
+            temp();
         }
         if (index == 0) {
             Node start = new Node(e);
@@ -98,8 +98,8 @@ public class ImmutableLinkedList implements ImmutableList {
 
         Node start = head;
         int ind = 0;
-        if (start.data == null) {
-            start =  new Node(c[0]);
+        if (checkHead()) {
+            start = new Node(c[0]);
             ind += 1;
 
         }
@@ -118,8 +118,8 @@ public class ImmutableLinkedList implements ImmutableList {
 
     @Override
     public ImmutableLinkedList addAll(int index, Object[] c) {
-        if (head.data == null || index >= size()) {
-            throw new IndexOutOfBoundsException();
+        if (checkHead() || checkIndex(index)) {
+            temp();
         }
 
         Node start = head;
@@ -146,8 +146,8 @@ public class ImmutableLinkedList implements ImmutableList {
 
     @Override
     public Object get(int index) {
-        if (index >= size()) {
-            throw new IndexOutOfBoundsException();
+        if (checkIndex(index)) {
+            temp();
         }
         Node temp = head;
         int ind = 0;
@@ -163,8 +163,8 @@ public class ImmutableLinkedList implements ImmutableList {
 
         ImmutableLinkedList copyArr = copyOf(this);
 
-        if (head.data == null || index >= size()) {
-            throw new IndexOutOfBoundsException();
+        if (checkHead() || checkIndex(index)) {
+            temp();
         }
 
         if (index == 0) {
@@ -189,20 +189,20 @@ public class ImmutableLinkedList implements ImmutableList {
             }
         } else {
             while (ind != index - 1) {
-                    temp = temp.next;
-                    ind += 1;
-                }
+                temp = temp.next;
+                ind += 1;
+            }
             nd = temp.next.next;
             temp.next = nd;
-            }
+        }
         return copyArr;
 
-        }
+    }
 
     @Override
     public ImmutableLinkedList set(int index, Object e) {
-        if (head.data == null || index >= size()) {
-            throw new IndexOutOfBoundsException();
+        if (checkHead() || checkIndex(index)) {
+            temp();
         }
         if (index == 0) {
             Node start = new Node(e);
@@ -230,8 +230,8 @@ public class ImmutableLinkedList implements ImmutableList {
 
     @Override
     public int indexOf(Object e) {
-        if (head.data == null) {
-            throw new IndexOutOfBoundsException();
+        if (checkHead()) {
+            temp();
         }
         int ind = 0;
 
@@ -249,8 +249,8 @@ public class ImmutableLinkedList implements ImmutableList {
     @Override
     public int size() {
         int size = 0;
-        Node current =  head;
-        if (head.data == null) {
+        Node current = head;
+        if (checkHead()) {
             return 0;
         }
 
@@ -268,7 +268,7 @@ public class ImmutableLinkedList implements ImmutableList {
 
     @Override
     public boolean isEmpty() {
-        return head.data == null;
+        return checkHead();
     }
 
     @Override
@@ -314,13 +314,13 @@ public class ImmutableLinkedList implements ImmutableList {
     }
 
     public ImmutableLinkedList addFirst(Object e) {
-        if (head.data == null) {
+        if (checkHead()) {
             Node start = new Node(e);
             return new ImmutableLinkedList(start);
         } else {
             ImmutableLinkedList newArr = ImmutableLinkedList.copyOf(this);
             Node prevHead = head;
-            newArr.head  = new Node(e);
+            newArr.head = new Node(e);
             newArr.head.next = prevHead;
             return newArr;
 
@@ -350,6 +350,18 @@ public class ImmutableLinkedList implements ImmutableList {
 
     public ImmutableLinkedList removeLast() {
         return (ImmutableLinkedList) remove(size() - 1);
+    }
+
+    private static void temp() {
+        throw new IndexOutOfBoundsException();
+    }
+
+    private boolean checkHead() {
+        return head.data == null;
+    }
+
+    private boolean checkIndex(int index) {
+        return index >= size();
     }
 
 

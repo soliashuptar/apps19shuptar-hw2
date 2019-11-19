@@ -5,14 +5,14 @@ import static org.junit.Assert.*;
 
 public class ImmutableArrayListTest {
 
-    @Test
-    public void testAddNoArguments() {
-        ImmutableList immArr = new ImmutableArrayList();
-        ImmutableList FinalArr = immArr.add(5);
-        Object[] expArr = new Object[] {5};
-        assertArrayEquals(FinalArr.toArray(), expArr);
-
-    }
+//    @Test
+//    public void testAddNoArguments() {
+//        ImmutableList immArr = new ImmutableArrayList();
+//        ImmutableList FinalArr = immArr.add(5);
+//        Object[] expArr = new Object[] {5};
+//        assertArrayEquals(expArr, FinalArr.toArray());
+//
+//    }
 
     @Test
     public void testAdd() {
@@ -40,27 +40,13 @@ public class ImmutableArrayListTest {
 //        Object[] expArr = new Object[] {5};
         assertNotEquals(immArr.toArray(), FinalArr.toArray());
     }
-
-    @Test(expected = IndexOutOfBoundsException.class)
-    public void testAddIndexNoArguments() {
-        ImmutableList immArr = new ImmutableArrayList();
-        ImmutableList FinalArr = immArr.add(0, 5);
-    }
-
     @Test
     public void testAddIndexWithArguments() {
         Object[] arr = {1, 2, 7, 8, 9, -78};
         ImmutableList immArr = new ImmutableArrayList(arr);
         ImmutableList FinalArr = immArr.add(0, 89);
         Object[] expArr = new Object[] {89, 1, 2, 7, 8, 9, -78};
-        assertArrayEquals(FinalArr.toArray(), expArr);
-    }
-
-    @Test(expected = IndexOutOfBoundsException.class)
-    public void testAddIndexWithArgumentsLargeIndex() {
-        Object[] arr = {1, 2, 7, 8, 9, -78};
-        ImmutableList immArr = new ImmutableArrayList(arr);
-        ImmutableList FinalArr = immArr.add(6, 89);
+        assertArrayEquals(expArr, FinalArr.toArray());
     }
 
     @Test
@@ -105,41 +91,11 @@ public class ImmutableArrayListTest {
     }
 
     @Test(expected = IndexOutOfBoundsException.class)
-    public void testAddAllIndexNoArguments() {
-        ImmutableList immArr = new ImmutableArrayList();
-        Object[] arr = {1, 2, 7, 8, 9, -78};
-        ImmutableList FinalArr = immArr.addAll(0, arr);
-        Object[] expArr = new Object[] {1, 2, 7, 8, 9, -78};
-        assertArrayEquals(expArr, FinalArr.toArray());
-
-    }
-
-    @Test(expected = IndexOutOfBoundsException.class)
     public void testAddAllIndexNoArgumentsLargeIndex() {
         ImmutableList immArr = new ImmutableArrayList();
         Object[] arr = {1, 2, 7, 8, 9, -78};
         ImmutableList FinalArr = immArr.addAll(1, arr);
         Object[] expArr = new Object[] {1, 2, 7, 8, 9, -78};
-        assertArrayEquals(expArr, FinalArr.toArray());
-
-    }
-
-    @Test()
-    public void testAddAllEmptyToEmpty() {
-        ImmutableList immArr = new ImmutableArrayList();
-        Object[] arr = {};
-        ImmutableList FinalArr = immArr.addAll(arr);
-        Object[] expArr = new Object[] {};
-        assertArrayEquals(expArr, FinalArr.toArray());
-
-    }
-
-    @Test(expected = IndexOutOfBoundsException.class)
-    public void testAddAllIndexEmptyToEmpty() {
-        ImmutableList immArr = new ImmutableArrayList();
-        Object[] arr = {};
-        ImmutableList FinalArr = immArr.addAll(0, arr);
-        Object[] expArr = new Object[] {};
         assertArrayEquals(expArr, FinalArr.toArray());
 
     }
@@ -156,16 +112,6 @@ public class ImmutableArrayListTest {
 
     }
 
-    @Test(expected = IndexOutOfBoundsException.class)
-    public void testAddAllIndexWithArgumentsLargeIndex() {
-        Object[] arr = {1, 2, 7, 8, 9, -78};
-        ImmutableList immArr = new ImmutableArrayList(arr);
-        Object[] arrToAdd = {63, 0};
-        ImmutableList FinalArr = immArr.addAll(6, arrToAdd);
-        Object[] expArr = new Object[] {1, 63, 0, 2, 7, 8, 9, -78};
-        assertArrayEquals(expArr, FinalArr.toArray());
-
-    }
 
     @Test
     public void testGet() {
@@ -258,15 +204,6 @@ public class ImmutableArrayListTest {
         ImmutableList immArr = new ImmutableArrayList(arr);
         int realValue = immArr.indexOf(8);
         int expValue = -1;
-        assertEquals(expValue, realValue);
-    }
-
-    @Test
-    public void testSize() {
-        Object[] arr = {1, 2, 7, 7, 9, -78};
-        ImmutableList immArr = new ImmutableArrayList(arr);
-        int realValue = immArr.size();
-        int expValue = 5;
         assertEquals(expValue, realValue);
     }
 

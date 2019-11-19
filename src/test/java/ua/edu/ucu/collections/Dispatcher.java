@@ -21,12 +21,14 @@ public class Dispatcher {
         ImmutableList a = testList;
         a = a.add(1);
 //        System.out.println(a.toString());
+//        System.out.println(a.toString());
         sameResult(a, new Object[]{1});
+
 //        System.out.println("shjfbv");
 
         a = a.add(7);
         a = a.add(1, 3);
-//        System.out.println(a.toString());
+        System.out.println(a.toString());
         sameResult(a, new Object[]{1, 3, 7});
 
 
@@ -61,6 +63,7 @@ public class Dispatcher {
 
 
 //        System.out.println(b);
+//        System.out.println("Im here");
         sameResult(b.indexOf(1),0);
         // test on  == vs equals usage in function indexOf
         sameResult(b.indexOf(new Integer(1)),0); // = )
@@ -69,18 +72,13 @@ public class Dispatcher {
         b = b.clear();
 //        System.out.println(b);
         sameResult(b,new Object[]{});
-//        System.out.println("Im fuc hereeeee");
     }
 
     public static void sameResult(ImmutableList result, Object[] target) {
-//        System.out.println(Arrays.toString(target));
-//        System.out.println(Arrays.toString(result.toArray()));
 //        System.out.println(result.size());
         boolean out = Arrays.equals(result.toArray(), target);
 //        System.out.println(out);
         for (int i = 0; i < result.size(); i++) {
-//            System.out.println("TARGET" + target[i]);
-//            System.out.println("Actual" + result.get(i));
             out = out && result.get(i).equals(target[i]);
         }
         if (!out) {
