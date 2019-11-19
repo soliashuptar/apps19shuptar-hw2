@@ -259,7 +259,7 @@ public class ImmutableLinkedListTest {
         ImmutableList new1 = LinkedLst.add(8);
         ImmutableList new2 = new1.add(19);
         ImmutableList new3 = new2.add(38);
-        Object[] expValue = {null};
+        Object[] expValue = {};
         assertArrayEquals(expValue, new3.clear().toArray());
 
     }

@@ -22,7 +22,7 @@ public class ImmutableArrayList implements ImmutableList {
     }
 
     @Override
-    public ImmutableList add(Object e) {
+    public ImmutableArrayList add(Object e) {
         size += 1;
         Object[] newArr = Arrays.copyOf(immArr, size);
         newArr[size - 1] = e;
@@ -31,7 +31,7 @@ public class ImmutableArrayList implements ImmutableList {
     }
 
     @Override
-    public ImmutableList add(int index, Object e) {
+    public ImmutableArrayList add(int index, Object e) {
         isValid(index);
         size += 1;
         Object[] arr = new Object[size];
@@ -49,7 +49,7 @@ public class ImmutableArrayList implements ImmutableList {
     }
 
     @Override
-    public ImmutableList addAll(Object[] c) {
+    public ImmutableArrayList addAll(Object[] c) {
         if (size == 0 && c.length == 0) {
             return new ImmutableArrayList();
         }
@@ -65,7 +65,7 @@ public class ImmutableArrayList implements ImmutableList {
     }
 
     @Override
-    public ImmutableList addAll(int index, Object[] c) {
+    public ImmutableArrayList addAll(int index, Object[] c) {
         isValid(index);
         Object[] arr = new Object[size + c.length];
         int indOfSourceArr = 0;
@@ -94,7 +94,7 @@ public class ImmutableArrayList implements ImmutableList {
     }
 
     @Override
-    public ImmutableList remove(int index) {
+    public ImmutableArrayList remove(int index) {
         isValid(index);
 
         Object[] newArr = new Object[size - 1];
@@ -111,7 +111,7 @@ public class ImmutableArrayList implements ImmutableList {
     }
 
     @Override
-    public ImmutableList set(int index, Object e) {
+    public ImmutableArrayList set(int index, Object e) {
         isValid(index);
 
         Object[] newArr = Arrays.copyOf(immArr, size);
@@ -123,12 +123,18 @@ public class ImmutableArrayList implements ImmutableList {
     public int indexOf(Object e) {
 
         for (int i = 0; i < size; i++) {
-            if (immArr[i] == e) {
+            if (immArr[i].equals(e)) {
                 return i;
             }
         }
         return -1;
     }
+
+//    private boolean equals(Object o, Object e) {
+//        if (o.getClass() == e.getClass()) {
+//
+//        }
+//    }
 
     @Override
     public int size() {
@@ -139,7 +145,7 @@ public class ImmutableArrayList implements ImmutableList {
     }
 
     @Override
-    public ImmutableList clear() {
+    public ImmutableArrayList clear() {
         return new ImmutableArrayList();
     }
 
