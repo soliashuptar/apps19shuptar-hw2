@@ -2,8 +2,8 @@ package ua.edu.ucu.collections.immutable;
 
 public final class ImmutableArrayList implements ImmutableList {
 
-    final private Object[] immArr;
     private int size;
+    final private Object[] immArr;
 
     public ImmutableArrayList() {
         immArr = new Object[0];
@@ -39,9 +39,9 @@ public final class ImmutableArrayList implements ImmutableList {
     public ImmutableArrayList addAll(int index, Object[] c) {
         isValid(index);
         Object[] arr = new Object[size + c.length];
-        
+
         int indOfSourceArr = 0;
-        for (int i = 0; i < arr.length; ) {
+        for (int i = 0; i < arr.length;) {
             if (i == index) {
                 System.arraycopy(c, 0, arr, i, c.length);
                 i += c.length;
@@ -140,7 +140,7 @@ public final class ImmutableArrayList implements ImmutableList {
         if (index > size) {
             throw new IndexOutOfBoundsException();
         }
-        if(index < 0){
+        if (index < 0) {
             throw new IllegalArgumentException();
         }
     }
