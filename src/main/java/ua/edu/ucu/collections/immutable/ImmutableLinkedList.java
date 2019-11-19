@@ -1,7 +1,5 @@
 package ua.edu.ucu.collections.immutable;
 
-import java.util.Arrays;
-
 public class ImmutableLinkedList implements ImmutableList {
 
     private Node head;
@@ -30,14 +28,13 @@ public class ImmutableLinkedList implements ImmutableList {
             Node node = new Node(arr[0]);
             this.head = node;
 
-            Node curNode = node;
+            Node curNode;
             for (int i = 1; i < arr.length; i++) {
                 curNode = new Node(arr[i]);
                 node.next = curNode;
                 node = curNode;
             }
 
-//            this.tail = curNode;
         }
     }
 
@@ -67,8 +64,6 @@ public class ImmutableLinkedList implements ImmutableList {
 
     @Override
     public ImmutableLinkedList add(int index, Object e) {
-//        System.out.println("COPYYY");
-//        System.out.println(copyOf(this));
         if (head.data == null || index >= size()) {
             throw new IndexOutOfBoundsException();
         }
@@ -81,30 +76,19 @@ public class ImmutableLinkedList implements ImmutableList {
         Node start = head;
         Node temp = start;
         Node el;
-        Node nd;
         int ind = 0;
-//        System.out.println(temp.next.data + "to add");
-
         while (temp.next != null) {
             if (ind == index - 1) {
-//                System.out.println("Im here");
                 el = temp.next;
                 temp.next = new Node(e);
                 temp = temp.next;
                 temp.next = el;
-//                temp = temp.next;
-//                nd = new Node(e);
-//                nd.next = temp.next;
-//                temp.next = nd;
-
             } else {
                 temp = temp.next;
 //                temp.next = el;
             }
             ind += 1;
         }
-//        System.out.println(Arrays.toString(new ImmutableLinkedList(start).toArray()));
-
 
         return new ImmutableLinkedList(start);
     }
@@ -153,48 +137,21 @@ public class ImmutableLinkedList implements ImmutableList {
                 temp.next = el;
             } else {
                 temp = temp.next;
-//                temp.next = el;
             }
             ind += 1;
         }
-
 
         return new ImmutableLinkedList(start);
     }
 
     @Override
     public Object get(int index) {
-//        System.out.println("Size blet" + size());
-//        System.out.println(index + "forl " + size());
-//        System.out.println(head.data);
         if (index >= size()) {
             throw new IndexOutOfBoundsException();
         }
-//        if (head.data && head.next)
-
-//        Node temp = head;
-//        int ind = 0;
-//        Object result = temp.data;
-//        while (temp != null) {
-//            try {
-//                System.out.println("EL" + temp.data);
-//                temp = temp.next;
-//            }
-//            catch (NullPointerException ignored) {
-//                break;
-//            }
-//            System.out.println("EL" + temp.data);
-//            temp = temp.next;
-//        }
         Node temp = head;
         int ind = 0;
-        Object result = temp.data;
-//        System.out.println(temp.data == null);
         while (ind != index) {
-//            System.out.println(temp.data);
-//            if (ind == index) {
-//                result = temp.data;
-//            }
             temp = temp.next;
             ind += 1;
         }
@@ -203,16 +160,14 @@ public class ImmutableLinkedList implements ImmutableList {
 
     @Override
     public ImmutableLinkedList remove(int index) {
-//        System.out.println("COPYYY");
+
         ImmutableLinkedList copyArr = copyOf(this);
-//        System.out.println(copyOf(this));
 
         if (head.data == null || index >= size()) {
             throw new IndexOutOfBoundsException();
         }
 
         if (index == 0) {
-//            Node start = new Node(e);
             Node start = copyArr.head.next;
             return new ImmutableLinkedList(start);
         }
@@ -234,25 +189,15 @@ public class ImmutableLinkedList implements ImmutableList {
             }
         } else {
             while (ind != index - 1) {
-//                if (ind == index - 1) {
-//                    temp.next = temp.next.next;
-
                     temp = temp.next;
                     ind += 1;
-//                } else {
-//                    temp = temp.next;
                 }
             nd = temp.next.next;
             temp.next = nd;
-
-
-//                ind += 1;
             }
         return copyArr;
-//        return new ImmutableLinkedList(start);
+
         }
-//        return new ImmutableLinkedList(start);
-//    }
 
     @Override
     public ImmutableLinkedList set(int index, Object e) {
@@ -308,7 +253,7 @@ public class ImmutableLinkedList implements ImmutableList {
         if (head.data == null) {
             return 0;
         }
-//        System.out.println("size here" + head.data);
+
         while (current != null) {
             size += 1;
             current = current.next;
@@ -333,32 +278,29 @@ public class ImmutableLinkedList implements ImmutableList {
 
         int ind = 0;
         if (current.data != null) {
-//            System.out.println("Yed its true");
+
             newArr[ind] = current.data;
         } else {
             return new Object[]{};
         }
-//        newArr[ind] = current.data;
+
         ind += 1;
         while (current.next != null) {
 
             current = current.next;
-            if (current.data != null){
+            if (current.data != null) {
                 newArr[ind] = current.data;
             }
-//            newArr[ind] = current.data;
+
             ind += 1;
         }
 
-//        for (int i = 0; i < newArr.length; i++) {
-//            System.out.println(newArr[i]);
-//        }
         return newArr;
     }
 
     @Override
     public String toString() {
-        toArray();
+//        toArray();
         StringBuilder s = new StringBuilder();
         Node temp = head;
         while (temp.next != null) {
